@@ -23,8 +23,5 @@ source "amazon-ebs" "ubuntu" {
   ssh_username = "ubuntu"
 }
 build {
-  name = "learn-packer"
-  sources = [
-    "source.amazon-ebs.ubuntu"
-  ]
+  sources = ["source.amazon-ebs.ubuntu" ]
 }
