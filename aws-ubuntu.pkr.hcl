@@ -35,7 +35,7 @@ build {
       "sudo systemctl enable nginx",
       "sudo systemctl start nginx",
       "sudo ufw allow proto tcp from any to any port 22,80,443",
-      "echo 'y '| sudomufw enable"
+      "echo 'y '| sudo ufw enable"
 
     ]
   }
