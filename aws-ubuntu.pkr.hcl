@@ -8,7 +8,7 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "learn-packer-linux-aws-ubuntutest"
+  ami_name      = "My-First-linux- packer ubuntutest"
   instance_type = "t2.micro"
   region        = "ap-southeast-2"
   source_ami_filter {
@@ -23,5 +23,23 @@ source "amazon-ebs" "ubuntu" {
   ssh_username = "ubuntu"
 }
 build {
-  sources = ["source.amazon-ebs.ubuntu" ]
+  name    = "My-first-build"
+  sources = ["source.amazon-ebs.ubuntu"]
+
+  provisioner "shell" {
+    inline = [
+      "echo Installing Updates",
+      "sudo apt-get update",
+      "sudo apt-get upgrade -y",
+      "sudo apt-get install -y nginx",
+      "sudo systemctl enable nginx",
+      "sudo systemctl start nginx",
+      "sudo ufw allow proto tcp from any to any port 22,80,443",
+      "echo 'y '| sudomufw enable"
+
+    ]
+  }
+
 }
+
+
